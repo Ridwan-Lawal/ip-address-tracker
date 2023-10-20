@@ -10,6 +10,10 @@ module.exports = {
         veryDarkGray: "hsl(0, 0%, 17%)",
         darkGray: "hsl(0, 0%, 59%)",
       },
+      backgroundImage: {
+        "header-mobile": "url('/images/pattern-bg-mobile.png')",
+        "header-desktop": "url('/images/pattern-bg-desktop.png')",
+      },
     },
   },
   plugins: [],
