@@ -6,7 +6,7 @@ const inputIp = document.querySelector(".input__address");
 const btnSearch = document.querySelector(".btn__search");
 const map = document.querySelector("#map");
 
-// pange onLoad
+// page onLoad
 const getDeviceLocation = function () {
   navigator.geolocation.getCurrentPosition(
     (position) => {
