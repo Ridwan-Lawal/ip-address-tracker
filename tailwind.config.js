@@ -12,7 +12,7 @@ module.exports = {
       },
       backgroundImage: {
         "header-mobile": "url('/images/pattern-bg-mobile.png')",
-        "header-desktop": "url('/images/pattern-bg-desktop.png')",
+        "header-desktop": "url('/images/pattern-bg-desktop.png)",
       },
     },
   },

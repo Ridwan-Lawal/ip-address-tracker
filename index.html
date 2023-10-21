@@ -13,15 +13,117 @@
       href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
+    <!-- leaflet css -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+
+    <!-- leaflet script -->
+    <script
+      defer
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <!-- script -->
+    <script type="module" defer src="./src/script.js"></script>
   </head>
   <body>
     <div class="containers">
       <header
-        class="h-[45vh] bg-header-mobile md:bg-header-desktop bg-no-repeat bg-cover"
-      ></header>
-    </div>
+        class="h-[55vh] px-8 md:h-[45vh] pt-8 bg-header-mobile md:bg-header-desktop bg-no-repeat bg-cover"
+      >
+        <!-- header context -->
+        <div class="text-center">
+          <h1 class="text-white text-3xl md:text-4xl font-medium">
+            IP Address Tracker
+          </h1>
+          <div
+            class="flex w-full rounded-lg overflow-hidden mt-9 max-w-xl mx-auto"
+          >
+            <input
+              type="text"
+              placeholder="Search  for any IP address or domain"
+              class="py-4 w-[100%] text-lg placeholder:font-normal placeholder:text-base font-medium input__address px-6 focus:outline-0 text-veryDarkGray"
+            />
 
-    <!-- script -->
-    <script type="module" src="./src/script.js"></script>
+            <button type="submit" class="btn__search bg-veryDarkGray py-4 px-6">
+              <img src="./images/icon-arrow.svg" alt="" />
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <main class="text-center">
+        <!-- ===== data dashboards ====-->
+        <div class="flex items-center justify-center">
+          <div
+            class="bg-white absolute z-[500] top-48 md:top-52 gap-6 px-16 md:px-8 md:max-w-5xl md:grid-cols-4 max-w-xl mx-auto shadow-lg py-8 rounded-2xl grid grid-cols-1 justify-items-center"
+          >
+            <!-- ip address -->
+            <section class="text-center md:text-left">
+              <p
+                class="uppercase text-darkGray text-xs font-bold tracking-widest"
+              >
+                ip address
+              </p>
+              <p
+                class="ip__address font-medium mt-3 text-veryDarkGray text-2xl"
+              ></p>
+            </section>
+
+            <!-- === location === -->
+            <section class="text-center md:flex md:gap-8 md:text-left">
+              <div class="hidden md:block border-l h-[75px] self-center"></div>
+              <div>
+                <p
+                  class="uppercase text-darkGray text-xs font-bold tracking-widest"
+                >
+                  location
+                </p>
+                <p
+                  class="location font-medium mt-3 text-veryDarkGray text-2xl"
+                ></p>
+              </div>
+            </section>
+
+            <!-- === timezone === -->
+            <section class="text-center md:flex md:gap-8 md:text-left">
+              <div class="hidden md:block border-r h-[75px] self-center"></div>
+              <div class="">
+                <p
+                  class="uppercase text-darkGray text-xs font-bold tracking-widest"
+                >
+                  Timezone
+                </p>
+                <p
+                  class="time__zone font-medium mt-3 text-veryDarkGray text-2xl"
+                ></p>
+              </div>
+            </section>
+
+            <!--=== isp ===-->
+            <section class="text-center md:flex md:gap-8 md:text-left">
+              <div class="hidden md:block border-l h-[70px] self-center"></div>
+              <div>
+                <p
+                  class="uppercase text-darkGray text-xs font-bold tracking-widest"
+                >
+                  isp
+                </p>
+                <p class="isp font-medium mt-3 text-veryDarkGray text-2xl"></p>
+              </div>
+            </section>
+          </div>
+        </div>
+        <!-- ======================== MAP =================-->
+
+        <div id="map" class="h-[60vh] md:h-[65vh]"></div>
+      </main>
+    </div>
   </body>
 </html>
