@@ -10,10 +10,12 @@ const mainSection = document.querySelector("main");
 
 /////// Data disiplay on the dashboard
 export const displayData = function (data) {
-  ipAddress.textContent = data?.query ?? "";
-  location.textContent = `${data?.city ?? ""}, ${data?.countryCode ?? ""}`;
+  ipAddress.textContent = data?.ip ?? "";
+  location.textContent = `${data?.city ?? ""}, ${data?.country ?? ""}`;
   timeZone.textContent = ` ${data?.timezone ?? ""}`;
-  isp.textContent = data.isp;
+  // convert isp to readable isp data
+  const ispData = data.org.split(" ").slice(1).join(" ");
+  isp.textContent = ispData;
 };
 
 ////////  Map display
@@ -33,7 +35,9 @@ export const getLocation = function (lat, lng) {
 // fetching data from api
 export const getData = async function (ip) {
   try {
-    const res = await fetch(`http://ip-api.com/json/${ip}`);
+    const res = await fetch(
+      `https://ipinfo.io/${ip}/json?token=9a6b56efec9896`
+    );
 
     // if response.ok is false and status 404
     if (!res.ok) {
@@ -42,6 +46,7 @@ export const getData = async function (ip) {
 
     // convert response to json which is the data
     const data = await res.json();
+
     // if data status fails
     if (data.status === "fail") {
       // for the error message
@@ -59,8 +64,9 @@ export const getData = async function (ip) {
       // destructured to get the lat and lon from the data
     }
 
-    console.log(data);
-    const { lat: dataLat, lon: dataLng } = data;
+    // to get the latitude and longitude from the data
+    const locationCoords = data.loc.split(",").map((coord) => +coord);
+    const [dataLat, dataLng] = locationCoords;
 
     // remove the map
     // Did this so if other ip is inputed map would reload
