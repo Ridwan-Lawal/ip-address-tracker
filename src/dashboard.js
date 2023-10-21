@@ -6,6 +6,7 @@ const timeZone = document.querySelector(".time__zone");
 const isp = document.querySelector(".isp");
 const mapSection = document.querySelector("#map");
 const errorMessage = document.querySelector(".error-message");
+const mainSection = document.querySelector("main");
 
 /////// Data disiplay on the dashboard
 export const displayData = function (data) {
@@ -16,11 +17,10 @@ export const displayData = function (data) {
 };
 
 ////////  Map display
-let map;
 
 export const getLocation = function (lat, lng) {
   // map tiles
-  map = L.map("map").setView([lat, lng], 13);
+  const map = L.map("map").setView([lat, lng], 13);
 
   L.tileLayer("https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
     attribution:
@@ -57,9 +57,19 @@ export const getData = async function (ip) {
       //   remove the error message
       errorMessage.classList.add("hidden");
       // destructured to get the lat and lon from the data
-      const { lat: dataLat, lon: dataLng } = data;
-      getLocation(dataLat, dataLng);
     }
+
+    console.log(data);
+    const { lat: dataLat, lon: dataLng } = data;
+
+    // remove the map
+    // Did this so if other ip is inputed map would reload
+    map.remove();
+    // when map is removed then, another map el was created dynamically
+    const mapped = `<div id="map" class="h-[60vh] md:h-[65vh]"></div>`;
+    mainSection.insertAdjacentHTML("beforeend", mapped);
+    // display map
+    getLocation(dataLat, dataLng);
   } catch (err) {
     console.error(err);
   }
