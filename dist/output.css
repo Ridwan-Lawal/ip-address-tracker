@@ -563,6 +563,18 @@ video {
   margin-top: 2.25rem;
 }
 
+.mt-32 {
+  margin-top: 8rem;
+}
+
+.mt-52 {
+  margin-top: 13rem;
+}
+
+.mt-36 {
+  margin-top: 9rem;
+}
+
 .flex {
   display: flex;
 }
@@ -654,6 +666,10 @@ video {
 
 .border-2 {
   border-width: 2px;
+}
+
+.border {
+  border-width: 1px;
 }
 
 .border-l {
@@ -756,6 +772,10 @@ video {
   text-transform: uppercase;
 }
 
+.italic {
+  font-style: italic;
+}
+
 .tracking-widest {
   letter-spacing: 0.1em;
 }
@@ -773,6 +793,11 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-red-800 {
+  --tw-text-opacity: 1;
+  color: rgb(153 27 27 / var(--tw-text-opacity));
 }
 
 .shadow-lg {

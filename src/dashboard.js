@@ -4,6 +4,8 @@ const ipAddress = document.querySelector(".ip__address");
 const location = document.querySelector(".location");
 const timeZone = document.querySelector(".time__zone");
 const isp = document.querySelector(".isp");
+const mapSection = document.querySelector("#map");
+const errorMessage = document.querySelector(".error-message");
 
 /////// Data disiplay on the dashboard
 export const displayData = function (data) {
@@ -34,15 +36,30 @@ export const getData = async function (ip) {
     const res = await fetch(`http://ip-api.com/json/${ip}`);
 
     // if response.ok is false and status 404
-    if (!res.ok) throw new Error("Something went wrong fetching data :(");
+    if (!res.ok) {
+      throw new Error("Something went wrong fetching data :(");
+    }
 
     // convert response to json which is the data
     const data = await res.json();
-    displayData(data);
-
-    // destructured to get the lat and lon from the data
-    const { lat: dataLat, lon: dataLng } = data;
-    getLocation(dataLat, dataLng);
+    // if data status fails
+    if (data.status === "fail") {
+      // for the error message
+      //   remove the map div
+      mapSection.classList.add("hidden");
+      //   add the error div
+      errorMessage.classList.remove("hidden");
+    } else {
+      // if data status is successful
+      displayData(data);
+      // add the map div
+      mapSection.classList.remove("hidden");
+      //   remove the error message
+      errorMessage.classList.add("hidden");
+      // destructured to get the lat and lon from the data
+      const { lat: dataLat, lon: dataLng } = data;
+      getLocation(dataLat, dataLng);
+    }
   } catch (err) {
     console.error(err);
   }

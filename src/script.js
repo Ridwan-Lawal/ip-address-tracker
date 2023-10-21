@@ -12,5 +12,6 @@ btnSearch.addEventListener("click", (e) => {
     alert("Please input an IP address");
     return;
   }
+
   getData(inputIp.value);
 });
